@@ -1,3 +1,24 @@
+<?php
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $contact = [
+      'name' => $_POST['name'],
+      'phone_number' => $_POST['phone_number'],
+    ];
+
+    if (file_exists('contacts.json')) {
+      $contacts = json_decode(file_get_contents("contacts.json"), true);
+    }else{
+      $contacts = [];
+    }
+
+    $contacts[] = $contact;
+
+    file_put_contents("contacts.json", json_encode($contacts));
+
+    header('Location: index.php');
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,15 +40,15 @@
       <div class="encabezado-form">
         <p>Agregar Nuevo Contacto</p>
       </div>
-      <form action="">
+      <form method="post" action="add.php">
         <div class="input">
           <label for="name">Nombre</label>
-          <input type="text" id="name">
+          <input type="text" id="name" name="name">
         </div>
         
         <div class="input">
-          <label for="phone">Teléfono</label>
-          <input type="text" id="phone">
+          <label for="phone_number">Teléfono</label>
+          <input type="text" id="phone_number" name="phone_number">
         </div>
 
         <div class="btns">

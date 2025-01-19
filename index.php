@@ -1,9 +1,10 @@
 <?php
-$contacts = [
-  ['name' => 'Miguel', 'phone_number' => 2220222],
-  ['name' => 'Angel', 'phone_number' => 339112],
-  ['name' => 'Eduardo', 'phone_number' => 97172]
-];
+  if (file_exists("contacts.json")) {
+    // $contacts = json_decode(file_get_contents('contacts.json'), true);
+    $contacts = json_decode(file_get_contents("contacts.json"), true);
+  }else{
+    $contacts = [];
+  }
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +24,6 @@ $contacts = [
     </div>
   </header>
   <main class="index">
-    <!-- Card de contactos -->
     <?php foreach ($contacts as $contact) { ?>
     <div class="contacto">
       <h3 class="nombre-contacto"><?= $contact['name'] ?></h3>
