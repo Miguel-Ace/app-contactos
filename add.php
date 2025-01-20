@@ -1,14 +1,24 @@
 <?php
   require "database.php";
 
+  $error = null;
+
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'];
-    $phoneNumber = $_POST['phone_number'];
-
-    $statement = $conn->prepare("INSERT INTO contacts (name, phone_number) VALUES ('$name', '$phoneNumber')");
-    $statement->execute();
-
-    header('Location: index.php');
+    if (empty($_POST['name']) || empty($_POST['phone_number'])) {
+      $error = "Completar los campos";
+    }elseif(strlen($_POST['phone_number']) < 9){
+      $error = "9 o más";
+    }else{
+      $name = $_POST['name'];
+      $phoneNumber = $_POST['phone_number'];
+  
+      $statement = $conn->prepare("INSERT INTO contacts (name, phone_number) VALUES (':name', ':phone_number')");
+      $statement->bindParam(':name', $name);
+      $statement->bindParam(':phone_number', $phone_number);
+      $statement->execute();
+  
+      header('Location: index.php');
+    }
   }
 ?>
 
@@ -34,6 +44,10 @@
         <p>Agregar Nuevo Contacto</p>
       </div>
       <form method="post" action="add.php">
+        <?php if ($error) { ?>
+          <p><?= $error ?></p>
+        <?php } ?>
+        
         <div class="input">
           <label for="name">Nombre</label>
           <input type="text" id="name" name="name">
