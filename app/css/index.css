@@ -63,7 +63,7 @@ body{
                 .btns{
                     display: flex;
                     gap: 1rem;
-                    button{
+                    button, a{
                         padding: 0 1rem;
                         font-weight: 500;
                         cursor: pointer;
@@ -81,6 +81,7 @@ body{
     
                         &.borrar-contacto{
                             background-color: rgb(255, 35, 6);
+                            text-decoration: none;
                         }
                     }
                 }

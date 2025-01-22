@@ -12,7 +12,7 @@
       $name = $_POST['name'];
       $phoneNumber = $_POST['phone_number'];
   
-      $statement = $conn->prepare("INSERT INTO contacts (name, phone_number) VALUES (':name', ':phone_number')");
+      $statement = $conn->prepare("INSERT INTO contacts (name, phone_number) VALUES (:name, :phone_number)");
       $statement->bindParam(':name', $name);
       $statement->bindParam(':phone_number', $phone_number);
       $statement->execute();
