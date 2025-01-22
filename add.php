@@ -22,23 +22,8 @@
   }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contacts App</title>
-  <link rel="stylesheet" href="http://localhost/PHP/contacts-app/app/css/index.css">
-</head>
-<body>
-  <header>
-    <div class="enlaces">
-      <a href="#">ContactsApp</a>
-      <a href="./index.php">Home</a>
-      <a href="#">Add Contact</a>
-    </div>
-  </header>
-  <main class="add">
+<?php require "partials/header.php" ?>
+
      <div class="formulario">
       <div class="encabezado-form">
         <p>Agregar Nuevo Contacto</p>
@@ -63,6 +48,5 @@
         </div>
       </form>
      </div>
-  </main>
-</body>
-</html>
+
+<?php require "partials/footer.php" ?>
