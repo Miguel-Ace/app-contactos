@@ -26,7 +26,7 @@
       <h3 class="nombre-contacto"><?= $contact['name'] ?></h3>
       <p class="numero-contacto"><?= $contact['phone_number'] ?></p>
       <div class="btns">
-        <button class="edit-contacto">Editar</button>
+        <a href="edit.php?id=<?= $contact['id'] ?>" class="edit-contacto">Editar</a>
         <a href="delete.php?id=<?= $contact['id'] ?>" class="borrar-contacto">Borrar</a>
       </div>
     </div>
